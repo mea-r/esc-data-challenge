@@ -133,7 +133,7 @@ def plot_hicp_contribution():
     try:
         df_val, df_vol, df_headline = get_data()
         df_weighted = adjust_dataframes(df_val, df_vol)
-        fig = create_figure("Headline HICP YoY Contribution")
+        fig = create_figure("Headline HICP YoY Contribution (Poland)")
         plot_bar(df_weighted, fig, ["Core", "Food", "Energy"], ["#2E6BFF", "#4CC9F0", "#FFCC00"])
         touch_up(fig)
         from theme import apply_plot_theme

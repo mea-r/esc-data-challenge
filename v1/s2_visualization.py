@@ -150,7 +150,7 @@ def plot_fig1_growth_divergence(df, date_range, theme=None):
             title="Density", 
             color="#2A3F5F",
             domain=[0, 0.75], 
-            showgrid=True,
+            showgrid=False,
             tickfont=dict(size=16, family="Georgia", color="#2A3F5F"),
             title_font=dict(size=18, family="Georgia", color="#2A3F5F"),
             tickprefix="<b>", ticksuffix="</b>"

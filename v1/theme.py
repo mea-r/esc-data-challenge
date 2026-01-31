@@ -68,12 +68,14 @@ def apply_plot_theme(fig):
     fig.update_xaxes(
         tickfont=dict(family=FONT_FAMILY, color=TEXT_COLOR, weight=600, size=16),
         title_font=dict(family=FONT_FAMILY, color=TEXT_COLOR, weight=600, size=18),
-        tickprefix="<b>", ticksuffix="</b>"
+        tickprefix="<b>", ticksuffix="</b>",
+        showgrid=False
     )
     fig.update_yaxes(
         tickfont=dict(family=FONT_FAMILY, color=TEXT_COLOR, weight=600, size=16),
         title_font=dict(family=FONT_FAMILY, color=TEXT_COLOR, weight=600, size=18),
-        tickprefix="<b>", ticksuffix="</b>"
+        tickprefix="<b>", ticksuffix="</b>",
+        showgrid=False
     )
     
     return fig

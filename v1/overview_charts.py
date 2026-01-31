@@ -19,12 +19,6 @@ def safe_import(module_name: str):
 
 
 def extract_fig(module: Any, candidates):
-    """
-    try to extract a Plotly figure from a module.
-    candidates: list of attribute / function names to try in order.
-    if attribute is callable, call it with no args. If it's a Figure, return it.
-    return None if nothing found.
-    """
     if module is None:
         return None
     for name in candidates:
@@ -36,7 +30,6 @@ def extract_fig(module: Any, candidates):
                 fig = attr()
             else:
                 fig = attr
-            # basic type check (duck-typing)
             if hasattr(fig, "to_plotly_json"):
                 return fig
         except Exception:
@@ -64,10 +57,6 @@ def make_placeholder(title: str, width: int, height: int, message: str = "Data u
 
 
 def enforce_layout(fig: go.Figure, width: int, height: int, margin=None, legend_horizontal=True):
-    """
-    ensure a consistent, compact layout for plotly figures.
-    if fig is None, returns None.
-    """
     if fig is None:
         return None
     try:
@@ -84,7 +73,6 @@ def enforce_layout(fig: go.Figure, width: int, height: int, margin=None, legend_
                 x=0.5,
                 font=dict(size=10)
             ))
-        # tighten tick density where possible
         try:
             fig.update_xaxes(showgrid=False)
         except Exception:
@@ -93,18 +81,13 @@ def enforce_layout(fig: go.Figure, width: int, height: int, margin=None, legend_
         pass
     return fig
 
-
-# configuration
-# names of visualization modules (adapt if you have different names)
 MODULE_MAP = {
     "s1": "s1.fig1",
     "s2": "s2_visualization",
     "s3": "s3_visualization",
     "s4": "s4_visualization",
-    # add more modules if present
 }
 
-# generic candidate attribute/function names to try in visualization modules
 FIG_NAME_CANDIDATES = [
     "cumulative_gdp_fig",
     "fig_cumulative_gdp",
@@ -116,7 +99,7 @@ FIG_NAME_CANDIDATES = [
     "figure",
     "get_figure",
     "main_figure",
-    "plot_fig3_animated" # added explicitly as it handles fig3
+    "plot_fig3_animated"
 ]
 
 ENERGY_CANDIDATES = [
@@ -125,7 +108,7 @@ ENERGY_CANDIDATES = [
     "fig1",
     "get_energy_fig",
     "energy_fig",
-    "plot_price_stability" # added explicitly
+    "plot_price_stability"
 ]
 
 INFLATION_CANDIDATES = [
@@ -134,7 +117,7 @@ INFLATION_CANDIDATES = [
     "fig2",
     "get_inflation_fig",
     "inflation_fig",
-    "get_inflation_data" # placeholder check
+    "get_inflation_data"
 ]
 
 GOODS_CANDIDATES = [
@@ -143,10 +126,9 @@ GOODS_CANDIDATES = [
     "fig6",
     "get_goods_fig",
     "goods_fig",
-    "plot_fig2_goods_balance" # added explicitly
+    "plot_fig2_goods_balance"
 ]
 
-# KPI retrieval: try to find a small dict in modules
 KPI_CANDIDATES = [
     "SUMMARY_KPIS",
     "kpis",
@@ -231,7 +213,8 @@ def render_overview():
                 plot_bgcolor="#F3F4F6",
                 paper_bgcolor="#F3F4F6",
                 yaxis=dict(
-                    showgrid=True, 
+                    title=dict(text="<b>Index (Jan 2022=100)</b>", font=dict(color="#2A3F5F", size=10)),
+                    showgrid=False, 
                     gridcolor='#E5E7EB', 
                     zeroline=True, 
                     zerolinecolor='#E5E7EB',
@@ -365,7 +348,7 @@ def render_overview():
         
     GRID_W = 380
     
-    grid_margin = dict(l=35, r=10, t=25, b=0)
+    grid_margin = dict(l=45, r=10, t=25, b=20)
     
     def style_fig(fig, line_date="2022-02-24"):
         if fig is None: return None
@@ -381,7 +364,7 @@ def render_overview():
 
         fig.update_layout(
             font=dict(family="Georgia", size=10, color="#333"),
-            title_font=dict(family="Georgia", size=12, color="#111"),
+            title_font=dict(family="Georgia", size=12, color="#2A3F5F"),
             legend=dict(
                 font=dict(family="Georgia", size=10),
                 orientation='h',
@@ -402,6 +385,9 @@ def render_overview():
         inflation_fig.update_layout(title_y=0.96) 
 
     goods_fig = style_fig(goods_fig)
+    if goods_fig:
+        goods_fig.update_yaxes(nticks=6, title=dict(text="EUR Millions", font=dict(size=10, color="#2A3F5F")))
+        goods_fig.update_layout(margin=dict(l=35))
 
     c1, c2, c3 = st.columns(3)
     
@@ -409,7 +395,7 @@ def render_overview():
         # block 1: Context & research question
         st.markdown(f"""
         <div style="height: {GRID_H}px; display: flex; flex-direction: column; justify-content: start; border-left: 2px solid #eee; padding-left: 15px; padding-right: 15px;">
-             <h4 style="font-family: 'Georgia', serif; font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #111;">Context & research question</h4>
+             <h4 style="font-family: 'Georgia', serif; font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #2A3F5F;">Context & Research Question</h4>
             <div style="font-size: 13px; color: #333; line-height: 1.4; font-family: 'Georgia', serif;">
             The 2022 invasion triggered a price-led energy shock that disrupted inflation and external balances across Europe.
             <br><br>
@@ -448,7 +434,7 @@ def render_overview():
         
     kpi_template = (
         '<div style="height: {GRID_H}px; display: flex; flex-direction: column; justify-content: flex-start; border-left: 2px solid #eee; padding-left: 15px; padding-top: 5px; font-family: \'Georgia\', serif;">\n'
-        '<h4 style="font-size: 14px; font-weight: bold; margin-bottom: 10px; margin-top: 0; color: #111;">Key indicators</h4>\n'
+        '<h4 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; margin-top: 0; color: #2A3F5F;">Key Indicators</h4>\n'
         '\n'
         '<!-- Row 1: GDP -->\n'
         '<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border: 1px solid #e0e0e0; padding: 8px; border-radius: 6px; background-color: #F3F4F6;">\n'
@@ -505,6 +491,9 @@ def render_overview():
         '<div style="font-size: 10px; color: #555; background: transparent; padding: 4px; border-radius: 4px; width: 110px; text-align: right; line-height: 1.2;">\n'
         'Exp P / Imp P<br>Q4 \'21 vs Q2–Q4 \'22\n'
         '</div>\n'
+        '</div>\n'
+        '<div style="margin-top: 10px; font-size: 10px; color: #666; font-style: italic;">\n'
+        '* Infl = Inflation, ToT = Terms of Trade\n'
         '</div>\n'
         '</div>'
     )

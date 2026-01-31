@@ -292,7 +292,13 @@ def main():
                     color: {current_theme['text']};
                     margin-top: 0px;
                 ">
-                    <p style="margin: 0; font-size: 14px;"><strong>Petroleum Imports – Value vs Volume (Euro Area)</strong><br><br>In months immediately following the invasion, import values rise sharply and reach a clear peak in mid-2022, while import volumes increase more gradually and never display a comparable spike. In parallel, the implied unit price rises steeply through 2022 and then reverses into 2023. The joint pattern is consistent with a terms-of-trade shock in which the import bill is driven mainly by higher energy prices rather than by a large expansion in imported quantities.</p>
+                    <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.5;">
+                        In months immediately following the invasion, import values rise sharply and reach a clear peak in mid-2022, while import volumes increase more gradually and never display a comparable spike. In parallel, the implied unit price rises steeply through 2022 and then reverses into 2023. The joint pattern is consistent with a terms-of-trade shock in which the import bill is driven mainly by higher energy prices rather than by a large expansion in imported quantities.
+                    </p>
+                    <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
+                        <strong>Methodology:</strong><br>
+                        Value and volume indices for Euro Area petroleum imports are rebased to January 2022 = 100. The implied unit price is derived as the ratio of the value index to the volume index, scaled to the same base.
+                    </p>
                 </div>
                 """, unsafe_allow_html=True)
             with col_chart:
@@ -317,7 +323,13 @@ def main():
                     color: {current_theme['text']};
                     margin-top: 0px;
                 ">
-                    <p style="margin: 0; font-size: 14px;"><strong>Headline HICP YoY Contributions (Poland vs Euro Area)</strong><br><br>In both economies, the post-invasion surge is initially led by energy, consistent with the energy-price shock documented earlier. However, the composition and persistence differ materially. Poland exhibits a substantially larger inflation build up, with energy and food contributions rising more sharply and with core inflation increasing to a much higher peak.</p>
+                    <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.5;">
+                        In both economies, the post-invasion surge is initially led by energy, consistent with the energy-price shock documented earlier. However, the composition and persistence differ materially. Poland exhibits a substantially larger inflation build up, with energy and food contributions rising more sharply and with core inflation increasing to a much higher peak.
+                    </p>
+                    <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
+                        <strong>Methodology:</strong><br>
+                        Headline inflation (Year-on-Year) is decomposed into contributions from Energy, Food, and Core components. Contributions are calculated by weighting the component inflation rates by their corresponding annual weights in the HICP basket.
+                    </p>
                 </div>
                 """, unsafe_allow_html=True)
                 with col_chart:
@@ -343,7 +355,13 @@ def main():
                     color: {current_theme['text']};
                     margin-top: 0px;
                 ">
-                    <p style="margin: 0; font-size: 14px;"><strong>Exchange Rate and Energy Inflation</strong><br><br>The figure is consistent with an imported-inflation mechanism in which the initial energy shock is reinforced by currency movements. In the months following February 2022, Poland’s NEER weakens relative to its baseline while energy inflation rises sharply and reaches a pronounced peak during 2022. A depreciation of the effective exchange rate increases the domestic-currency cost of energy imports, raising retail energy prices directly and intensifying cost pressures for firms.</p>
+                    <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.5;">
+                        The figure is consistent with an imported-inflation mechanism in which the initial energy shock is reinforced by currency movements. In the months following February 2022, Poland’s NEER weakens relative to its baseline while energy inflation rises sharply and reaches a pronounced peak during 2022. A depreciation of the effective exchange rate increases the domestic-currency cost of energy imports, raising retail energy prices directly and intensifying cost pressures for firms.
+                    </p>
+                    <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
+                        <strong>Methodology:</strong><br>
+                        Nominal Effective Exchange Rates (NEER) for Poland and the Euro Area are rebased to January 2022 = 100 to show cumulative currency movements relative to the pre-invasion baseline. Poland's Energy HICP inflation (Year-on-Year) is plotted on the secondary axis to illustrate the correlation between currency depreciation and imported energy price pressures.
+                    </p>
                 </div>
                 """, unsafe_allow_html=True)
                  with col_chart:
@@ -376,7 +394,7 @@ def main():
                     </p>
                     <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
                         <strong>Methodology:</strong><br>
-                        Quarterly real GDP growth is computed as quarter-on-quarter percentage changes in Poland’s real GDP over the full available sample. The histogram shows the empirical distribution of growth outcomes, with a boxplot summarizing dispersion. Vertical reference lines mark the average growth rate during the immediate post-invasion shock window (2022Q2–2022Q4) and the pre-invasion benchmark (2021Q4).
+                        Quarterly real GDP growth is computed as quarter-on-quarter percentage changes in Poland’s real GDP over the full available sample. The histogram shows the empirical distribution of growth outcomes, with a boxplot summarizing dispersion. The histogram highlights the bins corresponding to the average growth rate during the immediate post-invasion shock window (2022Q2–2022Q4) and the pre-invasion benchmark (2021Q4).
                     </p>
                 </div>
                 """, unsafe_allow_html=True)
@@ -426,7 +444,7 @@ def main():
                     </p>
                     <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
                         <strong>Methodology:</strong><br>
-                        The chart compares average component levels in two windows (2019–2021 vs 2022–2024) and plots the difference (post minus pre) for consumption, investment, and government spending. Net exports are computed as (X−M) in each window and then differenced; the total shift is the sum of all component deltas.
+                        The chart compares average component levels in two windows (2019–2021 vs 2022–2024) and plots the difference (post minus pre) for consumption, investment, and government spending. Net exports are computed as (X−M) in each window and then differenced; the total shift is the sum of all component shifts.
                     </p>
                 </div>
                 """, unsafe_allow_html=True)
@@ -462,7 +480,7 @@ def main():
                         </p>
                         <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
                             <strong>Methodology:</strong><br>
-                            Quarterly goods-balance series are merged for total goods balance and the Russia component on a common date index. The ex-Russia balance is constructed as Total − Russia, and the figure plots Russia and ex-Russia as stacked bars (relative mode).
+                            Quarterly goods-balance series are merged for total goods balance and the Russia component on a common date index. The ex-Russia balance is constructed as Total − Russia, and the figure plots Russia and ex-Russia as stacked bars.
                         </p>
                     </div>
                     """, unsafe_allow_html=True)
