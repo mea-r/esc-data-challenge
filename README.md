@@ -1,21 +1,11 @@
-# ECB Poland Macro Monitor
+# MACROECONOMIC IMPACT OF THE 2022 INVASION
 
-## Setup
+Dashboard created to support submission for ESC Data Challenge.
 
-1.  **Activate the environment**:
-    ```bash
-    source ../macro_env/bin/activate
-    ```
+## Running the dashboard
 
-2.  **Install dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Running the Dashboard
-
-To run the version 1 dashboard:
+To run the dashboard:
 
 ```bash
-streamlit run v1/dashboard_exp_dark.py
+streamlit run v1/dashboard.py
 ```
