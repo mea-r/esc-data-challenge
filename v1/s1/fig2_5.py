@@ -18,7 +18,6 @@ def get_data():
     df_headline = df_headline[df_headline["DATE"] >= "2019-January"]
 
     def recursive_df_merge(lst):
-        if not lst: return pd.DataFrame()
         if len(lst) == 1:
             return lst[0]
         else:
@@ -37,14 +36,13 @@ def get_data():
     def drop_time_period(lst):
         updated_df_lst = []
         for df in lst:
-            if "TIME PERIOD" in df.columns:
-                df = df.drop(["TIME PERIOD"], axis = 1)
+            df = df.drop(["TIME PERIOD"], axis = 1)
             updated_df_lst.append(df)
         return updated_df_lst
     
 
     if os.path.exists(values_dir):
-        values_files = [f for f in os.listdir(values_dir) if f.endswith(".csv")]
+        values_files = sorted([f for f in os.listdir(values_dir) if f.endswith(".csv")])
         df_values_lst = [pd.read_csv(os.path.join(values_dir, file_name)) for file_name in values_files]
     else:
 
@@ -52,7 +50,7 @@ def get_data():
 
 
     if os.path.exists(weights_dir):
-        weights_files = [f for f in os.listdir(weights_dir) if f.endswith(".csv")]
+        weights_files = sorted([f for f in os.listdir(weights_dir) if f.endswith(".csv")])
         df_weights_lst = [pd.read_csv(os.path.join(weights_dir, file_name)) for file_name in weights_files]
     else:
         df_weights_lst = []
@@ -133,6 +131,15 @@ def plot_hicp_contribution():
     try:
         df_val, df_vol, df_headline = get_data()
         df_weighted = adjust_dataframes(df_val, df_vol)
+        
+        cols = df_weighted.columns.tolist()
+        date_col = cols[0]
+        core_col = next(c for c in cols if "All-items" in c)
+        energy_col = next(c for c in cols if "Energy" in c)
+        food_col = next(c for c in cols if "Food" in c)
+        
+        df_weighted = df_weighted[[date_col, core_col, energy_col, food_col]]
+        
         fig = create_figure("Headline HICP YoY Contribution (Poland)")
         plot_bar(df_weighted, fig, ["Core", "Food", "Energy"], ["#2E6BFF", "#4CC9F0", "#FFCC00"])
         touch_up(fig)

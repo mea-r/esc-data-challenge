@@ -37,7 +37,7 @@ def get_data():
         target_dir = os.path.join(base_dir, subdir)
         if not os.path.exists(target_dir):
             return []
-        files = [f for f in os.listdir(target_dir) if f.endswith(".csv")]
+        files = sorted([f for f in os.listdir(target_dir) if f.endswith(".csv")])
         return [pd.read_csv(os.path.join(target_dir, f)) for f in files]
 
     df_poland_val = load_from_dir("poland_data")
@@ -172,6 +172,22 @@ def plot_inflation_comparison():
         comps = ["Core", "Food", "Energy"]
         cols = ["#2E6BFF", "#4CC9F0", "#FFCC00"]
         
+        p_cols = df_poland_weighted.columns.tolist()
+        p_date = p_cols[0]
+        p_core = next(c for c in p_cols if "All-items" in c)
+        p_energy = next(c for c in p_cols if "Energy" in c)
+        p_food = next(c for c in p_cols if "Food" in c)
+        
+        df_poland_weighted = df_poland_weighted[[p_date, p_core, p_energy, p_food]]
+
+        e_cols = df_ea_weighted.columns.tolist()
+        e_date = e_cols[0]
+        e_core = next(c for c in e_cols if "All-items" in c)
+        e_energy = next(c for c in e_cols if "Energy" in c)
+        e_food = next(c for c in e_cols if "Food" in c)
+        
+        df_ea_weighted = df_ea_weighted[[e_date, e_core, e_food, e_energy]]
+
         plot_bar(df_poland_weighted, fig, comps, cols, 1, False, "legend1")
         plot_bar(df_ea_weighted, fig, comps, cols, 2, True, "legend1")
         
