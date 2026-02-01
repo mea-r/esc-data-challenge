@@ -419,7 +419,7 @@ def main():
                     </p>
                     <p style="margin: 0; font-size: 12px; color: #888; line-height: 1.4;">
                         <strong>Methodology:</strong><br>
-                        Real GDP levels for Poland and the euro area are converted into an index by rebasing both series to Q4 2021 = 100 (using the 2021-12-31 observation as the base, or the latest pre-2022 observation if missing). The chart then plots the indexed paths over time to compare cumulative output performance, with a vertical reference line at the base quarter.
+                        Real GDP levels for Poland and the euro area are converted into an index by rebasing both series to Q4 2021 = 100. The chart then plots the indexed paths over time to compare cumulative output performance, with a vertical reference line at the base quarter.
                     </p>
                 </div>
                 """, unsafe_allow_html=True)
