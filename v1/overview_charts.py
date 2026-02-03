@@ -402,7 +402,7 @@ def render_overview():
             Did Russia’s full-scale invasion of Ukraine (24 Feb 2022) coincide with discernible changes in Poland’s key macroeconomic indicators, and did Poland’s response diverge from the euro area benchmark?
             </div>
             <div style="margin-top: 20px; font-size: 11px; color: #888; font-family: 'Georgia', serif; font-style: italic;">
-            Data sources: Eurostat, BIS
+            Data sources: ECB Data Portal: Balance of Payments and International Investment Position - BPS, ECB Data Portal: Eurostat External Trade Statistics - TRD, BIS Data Portal: Effective exchange rates - EER, ECB Data Portal: Main aggregates, national accounts - MNA, ECB Data Portal: Indices of Consumer Prices - ICP
             </div>
         </div>
         """, unsafe_allow_html=True)
