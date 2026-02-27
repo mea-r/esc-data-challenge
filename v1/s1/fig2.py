@@ -178,7 +178,7 @@ def plot_inflation_comparison():
         p_energy = next(c for c in p_cols if "Energy" in c)
         p_food = next(c for c in p_cols if "Food" in c)
         
-        df_poland_weighted = df_poland_weighted[[p_date, p_core, p_energy, p_food]]
+        df_poland_weighted = df_poland_weighted[[p_date, p_core, p_food, p_energy]]
 
         e_cols = df_ea_weighted.columns.tolist()
         e_date = e_cols[0]
@@ -186,7 +186,7 @@ def plot_inflation_comparison():
         e_energy = next(c for c in e_cols if "Energy" in c)
         e_food = next(c for c in e_cols if "Food" in c)
         
-        df_ea_weighted = df_ea_weighted[[e_date, e_core, e_energy, e_food]]
+        df_ea_weighted = df_ea_weighted[[e_date, e_core, e_food, e_energy]]
 
         plot_bar(df_poland_weighted, fig, comps, cols, 1, False, "legend1")
         plot_bar(df_ea_weighted, fig, comps, cols, 2, True, "legend1")

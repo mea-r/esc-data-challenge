@@ -263,10 +263,53 @@ def main():
             background-color: {current_theme['bg']} !important;
         }}
 
+        div[data-testid="stDownloadButton"] {{
+            position: fixed !important;
+            bottom: 30px !important;
+            left: 30px !important;
+            z-index: 999999 !important;
+        }}
+        
+        div[data-testid="stDownloadButton"] button {{
+            background-color: {current_theme['card_bg']} !important;
+            border-radius: 40px !important;
+            border: 1px solid {current_theme['grid']} !important;
+            padding: 6px 16px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+            transition: all 0.2s ease !important;
+            min-height: 48px !important;
+        }}
+        
+        div[data-testid="stDownloadButton"] button p {{
+            font-family: 'Inter', sans-serif !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            color: {current_theme['text']} !important;
+            text-transform: none !important;
+            margin: 0 !important;
+        }}
+        
+        div[data-testid="stDownloadButton"] button:hover {{
+            background-color: {current_theme['grid']} !important;
+        }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
 
+    import os
+    pdf_path = "data/report.pdf"
+    if os.path.exists(pdf_path):
+        with open(pdf_path, "rb") as f:
+            pdf_bytes = f.read()
+    else:
+        pdf_bytes = b"Please upload the actual report to data/report.pdf to enable downloading."
+        
+    st.download_button(
+        label="DOWNLOAD REPORT",
+        data=pdf_bytes,
+        file_name="report.pdf",
+        mime="application/pdf"
+    )
 
     if page == "OVERVIEW":
         from overview_charts import render_overview

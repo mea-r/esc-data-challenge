@@ -138,7 +138,7 @@ def plot_hicp_contribution():
         energy_col = next(c for c in cols if "Energy" in c)
         food_col = next(c for c in cols if "Food" in c)
         
-        df_weighted = df_weighted[[date_col, core_col, energy_col, food_col]]
+        df_weighted = df_weighted[[date_col, core_col, food_col, energy_col]]
         
         fig = create_figure("Headline HICP YoY Contribution (Poland)")
         plot_bar(df_weighted, fig, ["Core", "Food", "Energy"], ["#2E6BFF", "#4CC9F0", "#FFCC00"])
